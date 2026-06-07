@@ -1,0 +1,1 @@
+generated text summariser example
