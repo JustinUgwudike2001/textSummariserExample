@@ -216,3 +216,20 @@ def quality_gate(sentences: list[str],
             kept.append(sent)
  
     return kept, rejected
+
+def ingest(raw_text: str) -> list[str]:
+    filtered_text = remove_noise(raw_text)
+    normalised_text = normalise(filtered_text)
+    segmented_text = segment_sentences(normalised_text)
+    quality_text = quality_gate(segmented_text)
+    return quality_text[0]
+
+def ingest_using_string(text: str):
+    return ingest(ingest_from_string(text))
+
+def ingest_using_file(file_path: str):
+    return ingest(ingest_from_file(file_path))
+
+def ingest_using_url(url: str):
+    return ingest(ingest_from_url(url))
+
